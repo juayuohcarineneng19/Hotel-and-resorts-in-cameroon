@@ -1,18 +1,15 @@
 
 .header{
-    padding-top:0px;
     background-color: blue;
-    /* padding-top: 2rem; */
     display: flex;
     justify-content: center;
 }
 .headercontainer{
     width: 100%;
     max-width: 1024px;
-    /* background-color: yellow; */
-    color: white ;
+    margin: 20px 0px 100px 0px;
+}
+.headerlist{
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-
+    gap: 30px;
 }
