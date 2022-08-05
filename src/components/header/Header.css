@@ -65,6 +65,10 @@
     outline: none;
 }
 .headersearchtext{
-    color: lightgray;
+    color: lightcoral;
     cursor: pointer;
+}
+.headerdate{
+    position: absolute;
+    top: 40px;
 }

@@ -1,8 +1,29 @@
 import {faBed, faCalendarDays, faCoffee, faHotel, faPerson, faPlaceOfWorship, faPlane} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import { Children, useState } from "react";
 import { DateRange } from 'react-date-range';
+import 'react-date-range/dist/styles.css'; // main css file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+import {format} from "date-fns"
 import './Header.css'
-function Header () {
+const Header = () => { 
+  const [openDate, setOpenDate] =  useState(false)
+    const [date, setDate] = useState([
+        {
+          startDate: new Date(),
+          endDate: new Date(),
+          key: 'selection'
+        }
+      ]);
+
+      const [openOptions, setOpenOptions] =  useState(false)
+      const[options, setOptions] = useState([
+        {
+          adult:'1',
+          children:'0',
+          rooms:'1',
+        }
+      ])
   return (
     <div className='header'>
         <div className="headercontainer">
@@ -45,11 +66,18 @@ function Header () {
                  </div>
                  <div className="headersearchitem">
                         <FontAwesomeIcon icon={faCalendarDays} className="headericon" />
-                       <span>Check in <span>  Check out</span></span>
+                       <span onClick={() =>setOpenDate(!openDate)} className="headersearchtext">  {`${format(date[0].startDate, "mm/dd/yyyy")} to ${format(date[0].endDate, "MM/dd/yyyy")} `}</span>
+                       { openDate && <DateRange
+                           editableDateInputs={true}
+                           onChange={item => setDate([item.selection])}
+                           moveRangeOnFirstSelection={false}
+                            ranges={date}
+                            className="headerdate"
+                       />}
                  </div>
                  <div className="headersearchitem">
                         <FontAwesomeIcon icon={faPerson} className="headericon " />
-                        <span> 2Adults <span>  0Children</span> <span>  1Room</span></span>
+                        <span className="headersearchtext"> {`${options.adult} adult . ${options.children} children . ${options.room} room .`}</span>
                  </div>
                  <div className="headersearchitem">
                     <button className="headerbtn">Search</button>
