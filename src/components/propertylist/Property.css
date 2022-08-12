@@ -1,0 +1,37 @@
+.propertylist{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    max-width: 1024px;
+    /* background-color: red; */
+    align-items: baseline;
+    margin-top: 0;
+}
+.propertyitem{
+    flex: 1;
+    position: relative;
+    color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor:pointer ;
+    height: 192px;
+}
+.propertytitles{
+    position:absolute;
+    left: 10px;
+    color: black;   
+}
+.propertytitles>h2{
+    font-size: 18px;
+    margin: 0;
+}
+.propertytitles>h3{
+    font-size: 15px;
+    font-weight: 400;
+    margin: 0;
+}
+.propertyimages{
+    width: 100%;
+    object-fit: cover;
+}

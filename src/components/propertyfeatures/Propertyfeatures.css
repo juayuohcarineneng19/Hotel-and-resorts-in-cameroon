@@ -1,0 +1,34 @@
+.propertyfeatures{
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;   
+}
+.propertyfeaturesitem{
+    flex: 1;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+
+}
+.propertyfeaturesimg{
+    width: 100%;
+}
+.pfname{
+    font-weight: bolder;
+    margin: 0 0 0 0;
+    
+}
+.pfcity{
+     font-weight: 300px;
+     margin-top: 0;
+}
+.pfprice{
+    font-weight: 500px;
+    margin-top : 0;
+}
+.pfratings>button{
+    background-color: blue;
+    color: whitecd;
+}

@@ -5,8 +5,11 @@ import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import {format} from "date-fns"
+import { useNavigate } from "react-router-dom";
 import './Header.css'
-const Header = () => { 
+
+
+const Header = ({type}) => { 
   const [openDate, setOpenDate] =  useState(false)
     const [date, setDate] = useState([
         {
@@ -17,16 +20,24 @@ const Header = () => {
       ]);
 
       const [openOptions, setOpenOptions] =  useState(false)
-      const[options, setOptions] = useState([
+      const[options, setOptions] = useState(
         {
-          adult:'1',
-          children:'0',
-          rooms:'1',
+          adult:1,
+          children:0,
+          rooms:1,
         }
-      ])
+      )
+      const handleOption = (name, operation) =>{
+        setOptions(prev=>{return{
+          prev, [name]: operation === "increase" ? options[name] +1 : options[name] -1,
+        }
+      })
+      }
+      
+  
   return (
     <div className='header'>
-        <div className="headercontainer">
+        <div className={type === "list" ? "headercontainer listmode" : "headercontainer"}>
         <div className="headerlist">
             <div className="headerlistitem active">
             <FontAwesomeIcon icon={faBed} />
@@ -53,6 +64,8 @@ const Header = () => {
             <span>Resorts</span>
             </div>
         </div>
+        { type !== "list" &&
+          <> 
         <h1 className="headerwords">Enjoy every single day of your life :((</h1>
         <p className="headerdesc">Get rewarded for your travels-unlock instant savings of 10% or 
             more with a free iamavailable.com account</p>
@@ -77,12 +90,40 @@ const Header = () => {
                  </div>
                  <div className="headersearchitem">
                         <FontAwesomeIcon icon={faPerson} className="headericon " />
-                        <span className="headersearchtext"> {`${options.adult} adult . ${options.children} children . ${options.room} room .`}</span>
+                        <span onClick = {()=> setOpenOptions(!openOptions)} className="headersearchtext"> {`${options.adult} adult  ${options.children} children . ${options.rooms} room .`}</span> 
+                        {openOptions && <div className="option">
+                          <div className="optionitem">
+                            <span className="optiontext">Adult</span>
+                            <div className="optioncounter">
+                            <button className="optioncounterbtn"onClick={()=>handleOption("adult","decrease")}>-</button>
+                            <span className="optioncounternumber">{options.adult}</span>
+                            <button className="optioncounterbtn"onClick={()=>handleOption("adult","increase")}>+</button>
+                            </div>
+                          </div>
+
+                          <div className="optionitem">
+                            <span className="optiontext">Children</span>
+                            <div className="optioncounter">
+                            <button className="optioncounterbtn" onClick={()=>handleOption("children ","decrease")}>-</button>
+                            <span className="optioncounternumber">{options.children}</span>
+                            <button className="optioncounterbtn" onClick={()=>handleOption("children","increase")}>+</button>
+                            </div>
+                          </div>
+
+                          <div className="optionitem">
+                            <span className="optiontext">Room</span>
+                            <div className="optioncounter">
+                            <button className="optioncounterbtn" onClick={()=>handleOption("room","decrease")}>-</button>
+                            <span className="optioncounternumber">{options.room}</span>
+                            <button className="optioncounterbtn" onClick={()=>handleOption("room","increase")}>+</button>
+                            </div>
+                          </div>
+                        </div>}
                  </div>
                  <div className="headersearchitem">
                     <button className="headerbtn">Search</button>
                  </div>
-            </div>
+            </div> </>}
         </div>
     </div>
    
