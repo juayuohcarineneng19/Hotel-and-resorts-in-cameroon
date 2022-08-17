@@ -5,6 +5,7 @@ import Features from '../../components/features/Features'
 import Property from '../../components/propertylist/Property'
 import Propertyfeatures from '../../components/propertyfeatures/Propertyfeatures'
 import Mail from '../../components/Mails/Mail'
+import Footer from '../../components/footer/Footer'
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
       <h1 className='hometitle'>Homes Guest Love</h1>
       <Propertyfeatures/>
       <Mail/>
+      <Footer/>
       </div>
      
     </div>
