@@ -4,7 +4,7 @@ import Header from '../../components/header/Header'
 import Features from '../../components/features/Features'
 import Property from '../../components/propertylist/Property'
 import Propertyfeatures from '../../components/propertyfeatures/Propertyfeatures'
-import Mail from '../../components/Mails/Mail'
+import Mail from '../../components/mail/Mail'
 import Footer from '../../components/footer/Footer'
 
 const Home = () => {
