@@ -23,16 +23,16 @@ const Header = ({type}) => {
       const [openOptions, setOpenOptions] =  useState(false)
       const[options, setOptions] = useState(
         {
-          adult:1,
+          adult:2,
           children:0,
-          rooms:1,
+          room:1
         }
       )
 
       const navigate = useNavigate()
       const handleOption = (name, operation) =>{
         setOptions(prev=>{return{
-          prev, [name]: operation === "increase" ? options[name] +1 : options[name] -1,
+          ...prev, [name]: operation === "i" ? options[name] +1 : options[name] -1,
         }
       })
       }
@@ -72,9 +72,8 @@ const Header = ({type}) => {
         </div>
         { type !== "list" &&
           <> 
-        <h1 className="headerwords">Enjoy every single day of your life :((</h1>
-        <p className="headerdesc">Get rewarded for your travels-unlock instant savings of 10% or 
-            more with a free iamavailable.com account</p>
+        <h1 className="headerwords">Enjoy every single day of your life 🤩</h1>
+        <p className="headerdesc">Get Rewarded For Your Travels Around Cameroon. Discover New Touristic Sites</p>
             <button className="headerbtn">
                 Sign in/Register
             </button>
@@ -86,7 +85,12 @@ const Header = ({type}) => {
                  </div>
                  <div className="headersearchitem">
                         <FontAwesomeIcon icon={faCalendarDays} className="headericon" />
-                       <span onClick={() =>setOpenDate(!openDate)} className="headersearchtext">  {`${format(date[0].startDate, "mm/dd/yyyy")} to ${format(date[0].endDate, "MM/dd/yyyy")} `}</span>
+                       <span 
+                       onClick={() =>setOpenDate(!openDate)} 
+                       className="headersearchtext"> 
+                        {`${format(date[0].startDate, "MM/dd/yyyy")} to
+                         ${format(date[0].endDate, "MM/dd/yyyy")} `}
+                        </span>
                        { openDate && <DateRange
                            editableDateInputs={true}
                            onChange={item => setDate([item.selection])}
@@ -97,32 +101,41 @@ const Header = ({type}) => {
                  </div>
                  <div className="headersearchitem">
                         <FontAwesomeIcon icon={faPerson} className="headericon " />
-                        <span onClick = {()=> setOpenOptions(!openOptions)} className="headersearchtext"> {`${options.adult} adult  ${options.children} children . ${options.rooms} room .`}</span> 
+                        <span onClick = {()=> setOpenOptions(!openOptions)} className="headersearchtext"> {`${options.adult} adult  ${options.children} children  ${options.room} room`}</span> 
                         {openOptions && <div className="option">
                           <div className="optionitem">
                             <span className="optiontext">Adult</span>
                             <div className="optioncounter">
-                            <button className="optioncounterbtn"onClick={()=>handleOption("adult","decrease")}>-</button>
+                            <button 
+                            disabled={options.adult<= 1}
+                            className="optioncounterbtn"
+                            onClick={()=>handleOption("adult","d")}>-</button>
                             <span className="optioncounternumber">{options.adult}</span>
-                            <button className="optioncounterbtn"onClick={()=>handleOption("adult","increase")}>+</button>
+                            <button className="optioncounterbtn"onClick={()=>handleOption("adult","i")}>+</button>
                             </div>
                           </div>
 
                           <div className="optionitem">
                             <span className="optiontext">Children</span>
                             <div className="optioncounter">
-                            <button className="optioncounterbtn" onClick={()=>handleOption("children ","decrease")}>-</button>
+                            <button
+                            disabled={options.children <= 0}
+                             className="optioncounterbtn" 
+                             onClick={()=>handleOption("children ","d")}>-</button>
                             <span className="optioncounternumber">{options.children}</span>
-                            <button className="optioncounterbtn" onClick={()=>handleOption("children","increase")}>+</button>
+                            <button className="optioncounterbtn" onClick={()=>handleOption("children","i")}>+</button>
                             </div>
                           </div>
 
                           <div className="optionitem">
                             <span className="optiontext">Room</span>
                             <div className="optioncounter">
-                            <button className="optioncounterbtn" onClick={()=>handleOption("room","decrease")}>-</button>
+                            <button 
+                            disabled={options.room <= 1}
+                            className="optioncounterbtn" 
+                            onClick={()=>handleOption("room","d")}>-</button>
                             <span className="optioncounternumber">{options.room}</span>
-                            <button className="optioncounterbtn" onClick={()=>handleOption("room","increase")}>+</button>
+                            <button className="optioncounterbtn" onClick={()=>handleOption("room","i")}>+</button>
                             </div>
                           </div>
                         </div>}
